@@ -108,6 +108,12 @@ namespace WpfAppcalc
                 _undoStack.Push(command);
             }
         }
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            //очищаємо поле вводу
+            _currentInput = "0";
+            Display.Text = _currentInput; //виводимо на екран
+        }
     }
     public interface ICommand
     {
