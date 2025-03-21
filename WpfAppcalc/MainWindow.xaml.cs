@@ -83,6 +83,34 @@ namespace WpfAppcalc
                     result /= secondValue;
                     break;
             }
+            // !! додати команду в стек
+
+            _currentInput = result.ToString();
+            Display.Text = _currentInput;
+        }
+        
+    }
+    public interface ICommand
+    {
+        void Execute();   //виконування !!прописати оба методи!3
+        void Unexecute(); //скасування
+    }
+
+    //реалізує команду для калькулятора
+    public class CalculatorCommand : ICommand
+    {
+        private double _operand1;  //перше число
+        private double _operand2;  //друге число 
+        private string _operation; // + − × ÷
+        private double _result;
+
+        public CalculatorCommand(double operand1, double operand2, string operation)
+        {
+            //збереж. операції/операнди
+            _operand1 = operand1;
+            _operand2 = operand2;
+            _operation = operation;
+            _result = Calculate();  //обчислення результату + збереження
         }
     }
 }
