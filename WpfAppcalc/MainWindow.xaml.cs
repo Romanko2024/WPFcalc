@@ -20,9 +20,16 @@ namespace WpfAppcalc
     /// </summary>
     public partial class MainWindow : Window
     {
+        //стрінг через TextBox
+        private string _currentInput = "0"; //поточне значення(що вводиться) за умовч 0
+        private double _lastValue = 0; //останнє введене число
+        private string _lastOperation = ""; //остання операція
+        private Stack<ICommand> _undoStack = new Stack<ICommand>(); //стек команд для Undo
+        private Stack<ICommand> _redoStack = new Stack<ICommand>(); //стек команд для Redo
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }
