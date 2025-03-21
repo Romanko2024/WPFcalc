@@ -31,5 +31,19 @@ namespace WpfAppcalc
             InitializeComponent();
 
         }
+        private void Number_Click(object sender, RoutedEventArgs e) //обробка кнопок чисел
+        {
+            //визначає яку кнопку натиснув користувач. отримує її текст
+            Button button = sender as Button;
+            if (button == null) return;
+            string number = button.Content.ToString();
+
+            if (_currentInput == "0" && number != ".")
+                _currentInput = number;
+            else
+                _currentInput += number;
+
+            Display.Text = _currentInput;
+        }
     }
 }
