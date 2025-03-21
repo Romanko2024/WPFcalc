@@ -87,7 +87,27 @@ namespace WpfAppcalc
             _currentInput = result.ToString();
             Display.Text = _currentInput;
         }
-        
+        private void Undo_Click(object sender, RoutedEventArgs e)
+        {
+            //чи є елементи в стакі Undo
+            if (_undoStack.Count > 0)
+            {
+                //витягуємо останню ~~карту~~ команду з стеку
+                ICommand command = _undoStack.Pop();
+                command.Unexecute();
+                //додаємо команду до стеку Redo
+                _redoStack.Push(command);
+            }
+        }
+        private void Redo_Click(object sender, RoutedEventArgs e)
+        {
+            if (_redoStack.Count > 0)
+            {
+                ICommand command = _redoStack.Pop();
+                command.Execute();
+                _undoStack.Push(command);
+            }
+        }
     }
     public interface ICommand
     {
