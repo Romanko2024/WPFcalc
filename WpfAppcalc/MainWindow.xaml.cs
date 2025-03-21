@@ -57,5 +57,32 @@ namespace WpfAppcalc
 
             Display.Text = _lastValue.ToString();
         }
+        private void Equals_Click(object sender, RoutedEventArgs e)
+        {
+            if (!double.TryParse(_currentInput, out double secondValue)) return;
+
+            double result = _lastValue;
+
+            switch (_lastOperation)
+            {
+                case "+":
+                    result += secondValue;
+                    break;
+                case "−":
+                    result -= secondValue;
+                    break;
+                case "×":
+                    result *= secondValue;
+                    break;
+                case "÷":
+                    if (secondValue == 0)
+                    {
+                        MessageBox.Show("Ділення на нуль неможливе!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    result /= secondValue;
+                    break;
+            }
+        }
     }
 }
