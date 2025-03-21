@@ -45,5 +45,17 @@ namespace WpfAppcalc
 
             Display.Text = _currentInput;
         }
+        private void Operation_Click(object sender, RoutedEventArgs e) //оброб. арифм. оп.
+        {
+            Button button = sender as Button;
+            if (button == null) return;
+            //чи можна конверт в дабл
+            if (!double.TryParse(_currentInput, out _lastValue)) return;
+
+            _lastOperation = button.Content.ToString();
+            _currentInput = "0";
+
+            Display.Text = _lastValue.ToString();
+        }
     }
 }
