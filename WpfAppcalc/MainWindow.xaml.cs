@@ -83,8 +83,7 @@ namespace WpfAppcalc
                     result /= secondValue;
                     break;
             }
-            // !! додати команду в стек
-
+            _undoStack.Push(new CalculatorCommand(_lastValue, secondValue, _lastOperation));
             _currentInput = result.ToString();
             Display.Text = _currentInput;
         }
@@ -111,6 +110,30 @@ namespace WpfAppcalc
             _operand2 = operand2;
             _operation = operation;
             _result = Calculate();  //обчислення результату + збереження
+        }
+        private double Calculate()
+        {
+            return _operation switch //який тип операції
+            {
+                "+" => _operand1 + _operand2,
+                "−" => _operand1 - _operand2,
+                "×" => _operand1 * _operand2,
+                "÷" => (_operand2 == 0) ? 0 : _operand1 / _operand2,
+                _ => 0  //операція невідома - повертаємо 0
+            };
+        }
+
+        // для реду
+        public void Execute()
+        {
+            //повторне виконання обчислення 
+        }
+
+        //анду
+        public void Unexecute()
+        {
+            //зробити зворотну операцію 
+            //якщо була операція "+" треба зробити "-"
         }
     }
 }
