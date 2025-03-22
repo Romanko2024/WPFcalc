@@ -215,7 +215,15 @@ namespace WpfAppcalc
         // для реду
         public void Execute()
         {
-            //повторне виконання обчислення 
+            //повторне виконання обчислення
+            _result = _operation switch
+            {
+                "+" => _operand1 + _operand2,
+                "−" => _operand1 - _operand2,
+                "×" => _operand1 * _operand2,
+                "÷" => (_operand2 == 0) ? throw new DivideByZeroException() : _operand1 / _operand2,
+                _ => throw new InvalidOperationException("Невідома операція")
+            };
         }
 
         //анду
@@ -223,6 +231,14 @@ namespace WpfAppcalc
         {
             //зробити зворотну операцію 
             //якщо була операція "+" треба зробити "-"
+            _result = _operation switch
+            {
+                "+" => _operand1 - _operand2,
+                "−" => _operand1 + _operand2,
+                "×" => _operand1 / _operand2,
+                "÷" => _operand1 * _operand2,
+                _ => throw new InvalidOperationException("Невідома операція")
+            };
         }
     }
 }
