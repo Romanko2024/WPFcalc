@@ -52,7 +52,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!-- ДОП КНОПКИ Orientation="Horizontal"??? -->
-            <StackPanel x:Name="ExtraFunctionsPanel" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="11">
+            <StackPanel x:Name="ExtraFunctionsPanel" Visibility="Collapsed" Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="11">
                 <Button Content="π" Click="Pi_Click" Margin="5"/>
                 <Button Content="Exp" Click="Exp_Click" Margin="5"/>
                 <Button Content="√" Click="Sqrt_Click" Margin="5"/>
