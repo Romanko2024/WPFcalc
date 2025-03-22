@@ -56,9 +56,10 @@
             <StackPanel x:Name="ExtraFunctionsPanel" 
                 Visibility="Collapsed" 
                 Grid.Column="5" 
-                Orientation="Vertical" 
+                Orientation="Vertical"
+                VerticalAlignment="Stretch"
                 Margin="5">
-                <Button Content="π" Grid.Row="0" Click="Pi_Click"/>
+                <Button Content="π" Grid.Row="0"  Click="Pi_Click"/>
                 <Button Content="Exp" Grid.Row="1" Click="Exp_Click"/>
                 <Button Content="√" Grid.Row="2" Click="Sqrt_Click"/>
                 <Button Content="x²" Grid.Row="3" Click="Power_Click"/>
