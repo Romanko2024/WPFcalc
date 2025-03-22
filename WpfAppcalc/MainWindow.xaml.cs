@@ -114,6 +114,32 @@ namespace WpfAppcalc
             _currentInput = "0";
             Display.Text = _currentInput; //виводимо на екран
         }
+        private void ToggleExtraFunctions_Click(object sender, RoutedEventArgs e)
+        {
+            //перемик. видимості панелі доп функцій
+            if (ExtraFunctionsPanel.Visibility == Visibility.Collapsed)
+            {
+                ExtraFunctionsPanel.Visibility = Visibility.Visible; //показуємо панель
+            }
+            else
+            {
+                ExtraFunctionsPanel.Visibility = Visibility.Collapsed; //ховаємо панель
+            }
+        }
+        private void Pi_Click(object sender, RoutedEventArgs e)
+        {
+            _currentInput = Math.PI.ToString();
+            Display.Text = _currentInput;
+        }
+        private void Exp_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(_currentInput, out double value))
+            {
+                _currentInput = Math.Exp(value).ToString();
+                Display.Text = _currentInput;
+            }
+        }
+
     }
     public interface ICommand
     {
