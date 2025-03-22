@@ -154,6 +154,29 @@ namespace WpfAppcalc
                 }
             }
         }
+        private void Power_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(_currentInput, out double value))
+            {
+                _currentInput = Math.Pow(value, 2).ToString();
+                Display.Text = _currentInput;
+            }
+        }
+        private void Log_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(_currentInput, out double value))
+            {
+                if (value > 0)
+                {
+                    _currentInput = Math.Log(value).ToString();
+                    Display.Text = _currentInput;
+                }
+                else
+                {
+                    MessageBox.Show("Не можна логарифмувати від'ємні числа або нуль", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
     public interface ICommand
     {
