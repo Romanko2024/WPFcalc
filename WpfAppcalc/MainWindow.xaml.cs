@@ -139,7 +139,21 @@ namespace WpfAppcalc
                 Display.Text = _currentInput;
             }
         }
-
+        private void Sqrt_Click(object sender, RoutedEventArgs e)
+        {
+            if (double.TryParse(_currentInput, out double value))
+            {
+                if (value >= 0)  //чи з від'ємного числа
+                {
+                    _currentInput = Math.Sqrt(value).ToString();
+                    Display.Text = _currentInput;
+                }
+                else
+                {
+                    MessageBox.Show("Не існує квадратного кореня з від'ємного числа", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
     public interface ICommand
     {
