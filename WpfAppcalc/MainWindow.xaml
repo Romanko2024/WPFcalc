@@ -53,18 +53,27 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <!-- ДОП КНОПКИ Orientation="Horizontal"??? -->
-            <StackPanel x:Name="ExtraFunctionsPanel" 
-                Visibility="Collapsed" 
-                Grid.Column="5" 
-                Orientation="Vertical"
+            <Grid x:Name="ExtraFunctionsPanel"
+                Visibility="Collapsed"
+                Grid.Row="0" Grid.RowSpan="5"
+                Grid.Column="4"
                 VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
                 Margin="5">
-                <Button Content="π" Grid.Row="0"  Click="Pi_Click"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Content="π" Grid.Row="0" Click="Pi_Click"/>
                 <Button Content="Exp" Grid.Row="1" Click="Exp_Click"/>
                 <Button Content="√" Grid.Row="2" Click="Sqrt_Click"/>
                 <Button Content="x²" Grid.Row="3" Click="Power_Click"/>
                 <Button Content="log" Grid.Row="4" Click="Log_Click"/>
-            </StackPanel>
+            </Grid>
 
             <!-- КНОПКИ -->
             <Button Grid.Row="0" Grid.Column="0" Content="C" Click="Clear_Click"/>
