@@ -5,69 +5,78 @@
         MinWidth="150" MinHeight="250">
     <Grid>
         <Grid.RowDefinitions>
-            <!-- місця скільбки треба для вмісту (для вводу)-->
+            <!-- поле вводу+доп функ -->
             <RowDefinition Height="Auto"/>
-            <!-- місце що залишається(лдля кнопок) -->
+            <!-- кнопки -->
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!-- ПОЛЕ ВВОДУ -->
-        <TextBox x:Name="Display" 
-                 Grid.Row="0"
-            FontSize="30"
-            HorizontalAlignment="Stretch"
-            TextAlignment="Right"
-            Margin="5"
-            Padding="11"
-            VerticalContentAlignment="Center"
-            Background="White"
-            BorderThickness="2"/>
-            
-            <!-- ПАНЕЛЬ З КНОПКАМИ -->
-            <Grid Grid.Row="1" Margin="5">
-                <!-- засовуэмо у другий рядок -->
-                <!-- треба5 рядків і 4 колонки -->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <!-- * - кожен рядок рівномірно займає простір -->
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <!-- верхній рядок другого рядка.. -->
-                <Button Grid.Row="0" Grid.Column="0" Content="C" Click="Clear_Click"/>
-                <!-- Undo це CE Undo це CE Undo це CE Undo це CE  -->
-                <Button Grid.Row="0" Grid.Column="1" Content="CE" Click="Undo_Click"/>
-                <Button Grid.Row="0" Grid.Column="2" Content="Redo" Click="Redo_Click"/>
-                <!-- Operation_Click для всіх операцій і намбер клік для всі цифр  -->
-                <Button Grid.Row="0" Grid.Column="3" Content="÷" Click="Operation_Click"/>
-                
-                <Button Grid.Row="1" Grid.Column="0" Content="7" Click="Number_Click"/>
-                <Button Grid.Row="1" Grid.Column="1" Content="8" Click="Number_Click"/>
-                <Button Grid.Row="1" Grid.Column="2" Content="9" Click="Number_Click"/>
-                <Button Grid.Row="1" Grid.Column="3" Content="×" Click="Operation_Click"/>
-                
-                <Button Grid.Row="2" Grid.Column="0" Content="4" Click="Number_Click"/>
-                <Button Grid.Row="2" Grid.Column="1" Content="5" Click="Number_Click"/>
-                <Button Grid.Row="2" Grid.Column="2" Content="6" Click="Number_Click"/>
-                <Button Grid.Row="2" Grid.Column="3" Content="−" Click="Operation_Click"/>
-                
-                <Button Grid.Row="3" Grid.Column="0" Content="1" Click="Number_Click"/>
-                <Button Grid.Row="3" Grid.Column="1" Content="2" Click="Number_Click"/>
-                <Button Grid.Row="3" Grid.Column="2" Content="3" Click="Number_Click"/>
-                <Button Grid.Row="3" Grid.Column="3" Content="+" Click="Operation_Click"/>
-                
-                <Button Grid.Row="4" Grid.Column="0" Content="00" Click="Number_Click"/>
-                <Button Grid.Row="4" Grid.Column="1" Content="0" Click="Number_Click"/>
-                <Button Grid.Row="4" Grid.Column="2" Content="." Click="Number_Click"/>
-                <Button Grid.Row="4" Grid.Column="3" Content="=" Click="Equals_Click"/>
-            </Grid>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <!-- колонка для кнопки доп функ-->
+                <ColumnDefinition Width="Auto"/>
+                <!-- колонка для поля вводу -->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- КНОПКА ДОП ФУНКЦІЙ -->
+            <Button Content="Доп. функції" Click="ToggleExtraFunctions_Click"
+                    Grid.Column="0" Width="30" Margin="5"/>
+
+            <!-- ПОЛЕ ВВОДУ -->
+            <TextBox x:Name="Display" 
+                     Grid.Column="1"
+                     FontSize="30"
+                     HorizontalAlignment="Stretch"
+                     TextAlignment="Right"
+                     Margin="5"
+                     Padding="11"
+                     VerticalContentAlignment="Center"
+                     Background="White"
+                     BorderThickness="2"/>
+        </Grid>
+
+        <!-- ПАНЕЛЬ З КНОПКАМИ -->
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- КНОПКИ -->
+            <Button Grid.Row="0" Grid.Column="0" Content="C" Click="Clear_Click"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="CE" Click="Undo_Click"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="Redo" Click="Redo_Click"/>
+            <Button Grid.Row="0" Grid.Column="3" Content="÷" Click="Operation_Click"/>
+
+            <Button Grid.Row="1" Grid.Column="0" Content="7" Click="Number_Click"/>
+            <Button Grid.Row="1" Grid.Column="1" Content="8" Click="Number_Click"/>
+            <Button Grid.Row="1" Grid.Column="2" Content="9" Click="Number_Click"/>
+            <Button Grid.Row="1" Grid.Column="3" Content="×" Click="Operation_Click"/>
+
+            <Button Grid.Row="2" Grid.Column="0" Content="4" Click="Number_Click"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="5" Click="Number_Click"/>
+            <Button Grid.Row="2" Grid.Column="2" Content="6" Click="Number_Click"/>
+            <Button Grid.Row="2" Grid.Column="3" Content="−" Click="Operation_Click"/>
+
+            <Button Grid.Row="3" Grid.Column="0" Content="1" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Content="2" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" Content="3" Click="Number_Click"/>
+            <Button Grid.Row="3" Grid.Column="3" Content="+" Click="Operation_Click"/>
+
+            <Button Grid.Row="4" Grid.Column="0" Content="00" Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" Content="0" Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Content="." Click="Number_Click"/>
+            <Button Grid.Row="4" Grid.Column="3" Content="=" Click="Equals_Click"/>
+        </Grid>
     </Grid>
 </Window>
