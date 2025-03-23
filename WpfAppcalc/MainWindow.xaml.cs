@@ -94,9 +94,11 @@ namespace WpfAppcalc
             {
                 //витягуємо останню ~~карту~~ команду з стеку
                 ICommand command = _undoStack.Pop();
-                command.Unexecute();
+                double previousValue = ((CalculatorCommand)command).Unexecute();
                 //додаємо команду до стеку Redo
                 _redoStack.Push(command);
+                _currentInput = previousValue.ToString();
+                Display.Text = _currentInput;
             }
         }
         private void Redo_Click(object sender, RoutedEventArgs e)
@@ -104,8 +106,10 @@ namespace WpfAppcalc
             if (_redoStack.Count > 0)
             {
                 ICommand command = _redoStack.Pop();
-                command.Execute();
-                _undoStack.Push(command);
+                double newValue = ((CalculatorCommand)command).Execute();
+                _undoStack.Push(command); //команду назад у Undo
+                _currentInput = newValue.ToString();
+                Display.Text = _currentInput;
             }
         }
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -180,8 +184,8 @@ namespace WpfAppcalc
     }
     public interface ICommand
     {
-        void Execute();   //виконування !!прописати оба методи!3
-        void Unexecute(); //скасування
+        double Execute();   //виконування !!прописати оба методи!3
+        double Unexecute(); //скасування
     }
 
     //реалізує команду для калькулятора
@@ -190,6 +194,7 @@ namespace WpfAppcalc
         private double _operand1;  //перше число
         private double _operand2;  //друге число 
         private string _operation; // + − × ÷
+        private double _previousResult;
         private double _result;
 
         public CalculatorCommand(double operand1, double operand2, string operation)
@@ -198,6 +203,7 @@ namespace WpfAppcalc
             _operand1 = operand1;
             _operand2 = operand2;
             _operation = operation;
+            _previousResult = operand1; //пам'ятати значення перед операцією
             _result = Calculate();  //обчислення результату + збереження
         }
         private double Calculate()
@@ -213,32 +219,15 @@ namespace WpfAppcalc
         }
 
         // для реду
-        public void Execute()
+        public double Execute()
         {
-            //повторне виконання обчислення
-            _result = _operation switch
-            {
-                "+" => _operand1 + _operand2,
-                "−" => _operand1 - _operand2,
-                "×" => _operand1 * _operand2,
-                "÷" => (_operand2 == 0) ? throw new DivideByZeroException() : _operand1 / _operand2,
-                _ => throw new InvalidOperationException("Невідома операція")
-            };
+            return _result;
         }
 
         //анду
-        public void Unexecute()
+        public double Unexecute()
         {
-            //зробити зворотну операцію 
-            //якщо була операція "+" треба зробити "-"
-            _result = _operation switch
-            {
-                "+" => _operand1 - _operand2,
-                "−" => _operand1 + _operand2,
-                "×" => _operand1 / _operand2,
-                "÷" => _operand1 * _operand2,
-                _ => throw new InvalidOperationException("Невідома операція")
-            };
+            return _previousResult;
         }
     }
 }
